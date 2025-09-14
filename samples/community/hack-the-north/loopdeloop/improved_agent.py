@@ -12,8 +12,9 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-# Add the CUA libs to Python path
-libs_path = Path(__file__).parent / "libs" / "python"
+# Add the CUA libs to Python path (navigate up to root, then to libs)
+root_path = Path(__file__).parent.parent.parent.parent.parent
+libs_path = root_path / "libs" / "python"
 sys.path.insert(0, str(libs_path))
 sys.path.insert(0, str(libs_path / "core"))
 sys.path.insert(0, str(libs_path / "computer"))
@@ -725,7 +726,7 @@ def create_improved_agent(
         "8. When you want to click something, if you are already over the element, just click. "
         "9. If you are not over the element, move your mouse to the element and click. "
         
-        "GNOME ACTIVITIES PROTECTION: "
+        "🚨 GNOME ACTIVITIES PROTECTION: "
         "8. The system automatically prevents cursor movement to GNOME hot corners (top-left/right edges). "
         "9. If you see a search bar that says 'Type to search' or dark overlay screen, immediately press Escape. "
         "10. After pressing Escape, immediately press the button/action you originally wanted to do. "

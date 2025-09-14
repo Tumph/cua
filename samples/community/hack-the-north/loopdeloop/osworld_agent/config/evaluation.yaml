@@ -1,0 +1,93 @@
+# OSWorld Evaluation Configuration
+
+# Dataset Configuration
+dataset:
+  name: "hud-evals/OSWorld-Verified"
+  total_tasks: 369
+  exclude_google_drive: true  # Exclude 8 problematic tasks
+  effective_tasks: 361
+
+# Evaluation Splits
+splits:
+  development:
+    range: "train[:50]"
+    description: "Quick iteration and debugging"
+    
+  validation:
+    range: "train[50:100]"
+    description: "Hyperparameter tuning and model selection"
+    
+  test:
+    range: "train[100:]"
+    description: "Final evaluation for submission"
+    
+  full:
+    range: "train"
+    description: "Complete dataset evaluation"
+
+# Execution Parameters
+execution:
+  max_concurrent: 20
+  max_steps: 75
+  timeout_per_task: 600  # seconds
+  screenshot_delay: 0.5
+  retry_attempts: 3
+
+# Resource Management
+resources:
+  max_trajectory_budget: 5.0  # USD
+  only_n_most_recent_images: 3
+  trajectory_saving: true
+  trajectory_dir: "trajectories/osworld_runs"
+
+# Metrics Collection
+metrics:
+  primary:
+    - task_completion_rate
+    - weighted_efficiency_score
+    - cost_per_task
+    - time_per_task
+    
+  secondary:
+    - grounding_accuracy
+    - recovery_success_rate
+    - pattern_reuse_rate
+    - error_frequency
+    
+  categories:
+    - web_tasks
+    - desktop_tasks
+    - file_operations
+    - cross_app_workflows
+
+# Success Criteria
+success_criteria:
+  minimum_viable:
+    completion_rate: 0.25  # 25%
+    stability: "no_crashes"
+    evaluation_time: 86400  # 24 hours
+    
+  target:
+    completion_rate: 0.35  # 35%
+    efficiency_ratio: 2.0  # within 2x human steps
+    cost_per_task: 0.50  # USD
+    
+  stretch:
+    completion_rate: 0.40  # 40%
+    efficiency_ratio: 1.5  # within 1.5x human steps
+    category_leadership: true
+
+# Monitoring Configuration
+monitoring:
+  real_time_tracking: true
+  failure_analysis: true
+  performance_dashboard: true
+  cost_alerts: true
+  
+# HUD Integration
+hud:
+  job_name_template: "osworld-sota-{timestamp}-{config}"
+  metadata:
+    framework: "cua"
+    agent_type: "composed"
+    optimization_target: "osworld"

@@ -1,0 +1,43 @@
+# LoopDeLoop Team - Improved OSWorld Agent Requirements
+# Hack the North 2024 Submission
+
+# Core dependencies from CUA framework
+# Note: The CUA framework libs are accessed via relative paths to the main project
+
+# LLM and AI Model APIs
+anthropic>=0.23.0
+openai>=1.0.0
+litellm>=1.40.0
+
+# Computer vision and image processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Async and HTTP
+aiohttp>=3.8.0
+httpx>=0.24.0
+asyncio-throttle>=1.0.0
+
+# Data processing
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+PyYAML>=6.0.0
+python-dotenv>=1.0.0
+
+# Logging and monitoring
+structlog>=23.0.0
+
+# HUD integration (for benchmarking)
+# Note: HUD integration is handled by the CUA framework
+
+# Optional dependencies for enhanced features
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Note: This agent leverages the CUA framework's existing infrastructure
+# The main dependencies are already satisfied by the parent CUA project
+# This requirements.txt is for additional dependencies specific to our improvements
