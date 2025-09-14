@@ -1,0 +1,46 @@
+# OSWorld Agent Model Configurations
+
+# Primary Configuration (Accuracy-Optimized) - Uses working omniparser model like improved_agent.py
+primary:
+  grounding_model: "omniparser"
+  planning_model: "anthropic/claude-3-5-sonnet-20241022"
+  composed_model: "omniparser+anthropic/claude-3-5-sonnet-20241022"
+  description: "Best accuracy configuration with omniparser grounding"
+  vram_required: 8000  # MB
+  cost_per_1k_tokens: 0.015
+
+# Alternative Configuration (Speed/Cost-Optimized) - Uses working omniparser model
+alternative:
+  grounding_model: "omniparser"
+  planning_model: "anthropic/claude-3-5-sonnet-20241022"
+  composed_model: "omniparser+anthropic/claude-3-5-sonnet-20241022"
+  description: "Faster configuration with omniparser grounding"
+  vram_required: 8000  # MB
+  cost_per_1k_tokens: 0.015
+
+# Fallback Configuration (Minimal) - Using OpenAI model that works
+fallback:
+  grounding_model: "openai/computer-use-preview"
+  planning_model: "openai/computer-use-preview"
+  composed_model: "openai/computer-use-preview"
+  description: "Minimal resource requirements"
+  vram_required: 4000  # MB
+  cost_per_1k_tokens: 0.003
+
+# Model Selection Strategy
+routing:
+  simple_tasks: "fallback"
+  complex_tasks: "primary"
+  default: "alternative"
+  
+# Task Classification Rules
+task_complexity:
+  simple:
+    - "navigation"
+    - "typing"
+    - "single_click"
+  complex:
+    - "cross_app_workflow"
+    - "form_validation"
+    - "file_operations"
+    - "error_recovery"

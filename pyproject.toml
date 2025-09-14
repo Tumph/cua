@@ -7,6 +7,7 @@ authors = [{ name = "TryCua", email = "gh@trycua.com" }]
 dependencies = [
     "openai<1.100.0",
     "anthropic>=0.67.0",
+    "cua-som>=0.1.3",
 ]
 description = "CUA (Computer Use Agent) mono-repo"
 license = { text = "MIT" }
@@ -56,7 +57,7 @@ test = [
 respect-source-order = true
 
 [tool.pdm.resolution.overrides]
-hud-python = "0.4.12"
+hud-python = "0.4.19"
 
 [tool.black]
 line-length = 100
